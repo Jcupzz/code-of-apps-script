@@ -1,0 +1,48 @@
+function sendEmails() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var startRow = 2; // First row of data to process
+  var numRows = 239; // Number of rows to process
+
+
+
+  var subjectrange = sheet.getRange(2,5); 
+  var subjectdata = subjectrange.getValue();
+
+  var messagedatarange = sheet.getRange(3,5);
+  var messagedata = messagedatarange.getValue();
+
+  // console.log(messagedata);
+
+
+
+
+  console.log(subjectdata);
+  // Fetch the range of cells A2:B3
+  var dataRange = sheet.getRange(startRow, 1, numRows, 1);
+  // Fetch values for each row in the Range.
+  // getRange(row, column, optNumRows, optNumColumns)
+  var data = dataRange.getValues();
+  for (var i in data) {
+    var row = data[i];
+    var emailAddress = row[0]; // First column
+    var message = row[1]; // Second column
+    var name = emailAddress.substring(0, emailAddress.indexOf("@"));
+    var finalName = name.replace("."," ");
+    // console.log(finalName);
+    // s[0].toUpperCase() + s.slice(1)
+    var finalfinalname = finalName.toString().charAt(0).toUpperCase() + finalName.slice(1);
+
+    // console.log(finalfinalname);
+
+     var finalMessageData = messagedata.replace("[Organisation]",finalfinalname+",");
+     console.log(finalMessageData);
+
+
+    // console.log(finalMessageData);
+    // var username = email.substring(0, email.indexOf("@"));
+
+    // var subject = 'Sending emails from a Spreadsheet';
+    // console.log(emailAddress, subjectdata, message);
+    // MailApp.sendEmail(emailAddress, subject, message);
+  }
+}
