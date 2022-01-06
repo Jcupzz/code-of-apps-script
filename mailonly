@@ -1,0 +1,37 @@
+function sendEmails() {
+  var sheet = SpreadsheetApp.getActiveSheet();
+  var startRow = 2; // First row of data to process
+  var numRows = 110; // Number of rows to process
+
+
+
+  var subjectrange = sheet.getRange(2,10); 
+  var subject = subjectrange.getValue();
+
+  var messagedatarange = sheet.getRange(3,10);
+  var message = messagedatarange.getValue();
+
+  // console.log(message);
+  // console.log(subject);
+
+  var dataRange = sheet.getRange(startRow, 2, numRows, 1);
+  // getRange(row, column, optNumRows, optNumColumns)
+  var data = dataRange.getValues();
+  for (var i in data) {
+    var row = data[i];
+    var emailAddress = row[0]; // First column
+
+    // console.log(emailAddress);
+   
+    console.log(emailAddress, subject, message);
+    // MailApp.sendEmail(emailAddress, subject, message);
+  }
+}
+
+
+
+
+
+
+
+
